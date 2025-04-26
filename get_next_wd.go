@@ -66,13 +66,14 @@ func main() {
 
 	d, err := time.Parse(layout, dateStr)
 	CheckErr(err)
-	log.Println("Startdate: " + d.String())
+
+	log.Println("Startdate: " + d.Format(layout))
 	targetDate := d.AddDate(0, 0, p)
-	log.Println("Calculated: " + targetDate.String())
+	log.Println("Calculated: " + targetDate.Format(layout))
 
 	wochentag, _ := isWorkingDay(targetDate)
 	log.Println("Is a: " + wochentag)
 
-	checkDateStr := targetDate.String()
+	checkDateStr := targetDate.Format(layout)
 	isHoliday(checkDateStr, dataFileName)
 }
