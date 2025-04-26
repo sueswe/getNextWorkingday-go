@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -14,14 +15,16 @@ func CheckErr(e error) {
 	}
 }
 
-// returns 0 when workday
-func isWorkingDay(theDate time.Time) (string, int) {
+// returns string(dow) and 0 when workday
+func isWorkingDay(theDate string) (string, int) {
 	// check date for weekend or working day
+	d, err := time.Parse(time.DateOnly, theDate)
+	CheckErr(err)
 	i := 0
-	dow := theDate.Weekday()
+	dow := d.Weekday()
 	dow_num := int(dow)
 
-	//log.Println("DEBUG: " + strconv.Itoa(dow_num))
+	log.Println("DOW: " + dow.String())
 
 	if (dow_num == 6) || (dow_num == 0) {
 		i = 1
@@ -45,11 +48,34 @@ func isHoliday(theDate string, csv string) int {
 		// fmt.Println(line) //print the content line by line
 		// log.Println("Checking " + theDate + " against: " + line)
 		if strings.Contains(line, theDate) {
-			log.Println("Found: " + line)
+			log.Println("(holiday found), " + line)
 			rtc = 0
 		}
 	}
+	log.Println("Is_Holiday: " + strconv.Itoa(rtc))
 	return rtc
+}
+
+// returns the next working day(string)
+func nextWorkingDay(csv string, datum string) {
+	fmt.Println("\nCalling recursion with: " + datum)
+	_, is_wd := isWorkingDay(datum)
+	is_h := isHoliday(datum, csv)
+
+	if (is_wd == 0) && (is_h == 1) {
+		log.Println("Workday and not holiday: " + datum)
+		fmt.Println(datum)
+	} else {
+		log.Print("ELSE: iterating ...")
+		// parse:
+		p_d, err := time.Parse(time.DateOnly, datum)
+		CheckErr(err)
+		// add:
+		pplus := p_d.AddDate(0, 0, 1)
+		// format+string
+		new_date := pplus.Format(time.DateOnly)
+		nextWorkingDay(csv, new_date)
+	}
 }
 
 func main() {
@@ -62,18 +88,22 @@ func main() {
 	plus := os.Args[2]
 	p, _ := strconv.Atoi(plus)
 	dataFileName := "holiday.csv"
-	layout := "2006-01-02"
+	//layout := "2006-01-02"
 
-	d, err := time.Parse(layout, dateStr)
+	// make a time and parse it:
+	d, err := time.Parse(time.DateOnly, dateStr)
 	CheckErr(err)
 
-	log.Println("Startdate: " + d.Format(layout))
+	// adding offset
 	targetDate := d.AddDate(0, 0, p)
-	log.Println("Calculated: " + targetDate.Format(layout))
+	log.Println("Startdate: " + d.Format(time.DateOnly) + ", Offset: " + strconv.Itoa(p) + " = " + targetDate.Format(time.DateOnly))
 
-	wochentag, _ := isWorkingDay(targetDate)
-	log.Println("Is a: " + wochentag)
+	checkDateStr := targetDate.Format(time.DateOnly)
 
-	checkDateStr := targetDate.Format(layout)
-	isHoliday(checkDateStr, dataFileName)
+	// wochentag, _ := isWorkingDay(checkDateStr)
+	// log.Println("Is a: " + wochentag)
+	// erg := isHoliday(checkDateStr, dataFileName)
+	// log.Println(erg)
+
+	nextWorkingDay(dataFileName, checkDateStr)
 }
