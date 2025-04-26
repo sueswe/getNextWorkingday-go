@@ -57,7 +57,7 @@ func isHoliday(theDate string, csv string) int {
 }
 
 // returns the next working day(string)
-func nextWorkingDay(csv string, datum string) {
+func nextWorkingDay(csv string, datum string) string {
 	fmt.Println("\nCalling recursion with: " + datum)
 	_, is_wd := isWorkingDay(datum)
 	is_h := isHoliday(datum, csv)
@@ -65,6 +65,8 @@ func nextWorkingDay(csv string, datum string) {
 	if (is_wd == 0) && (is_h == 1) {
 		log.Println("Workday and not holiday: " + datum)
 		fmt.Println(datum)
+		// FIXME: /get_next_wd.go:80:1: missing return
+		return datum
 	} else {
 		log.Print("ELSE: iterating ...")
 		// parse:
@@ -75,6 +77,7 @@ func nextWorkingDay(csv string, datum string) {
 		// format+string
 		new_date := pplus.Format(time.DateOnly)
 		nextWorkingDay(csv, new_date)
+		return "nonsense"
 	}
 }
 
@@ -105,5 +108,7 @@ func main() {
 	// erg := isHoliday(checkDateStr, dataFileName)
 	// log.Println(erg)
 
-	nextWorkingDay(dataFileName, checkDateStr)
+	erg := nextWorkingDay(dataFileName, checkDateStr)
+	log.Println(erg)
+	//nextWorkingDay(dataFileName, checkDateStr)
 }
