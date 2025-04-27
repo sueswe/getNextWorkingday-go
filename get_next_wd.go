@@ -15,6 +15,14 @@ func CheckErr(e error) {
 	}
 }
 
+var REV = "DEV"
+
+func usage() {
+	fmt.Println("Version: " + REV)
+	fmt.Println("\nUsage: \n  ./getNextWorkingday Date(YYYY-MM-DD) Offset(N)")
+	fmt.Println("")
+}
+
 // returns DayOfWeek and zero(is a wd) or one(is not a wd)
 func isWorkingDay(theDate string) (string, int) {
 	d, err := time.Parse(time.DateOnly, theDate)
@@ -73,7 +81,7 @@ func nextWorkingDay(csv string, datum string) {
 
 func main() {
 	if len(os.Args) <= 1 {
-		fmt.Println("\nUsage: \n  ./get_next_wd Date(YYYY-MM-DD) Offset(N)\n")
+		usage()
 		log.Fatalln("Missing arguments.")
 		os.Exit(1)
 	}
