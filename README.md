@@ -65,5 +65,5 @@ Tuesday, 2025-06-10
 
 ## Install
 
-Therefor you may use *Make.sh* . It runs a go build and go install and sets the PATH to HOME/go/bin/ .
+Therefor you may use *Make.sh* . It runs go build, mv it to `$HOME/go/bin` and sets the PATH to HOME/go/bin/ .
 
