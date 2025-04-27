@@ -30,34 +30,34 @@ getNextWorkingday 2025-08-10 5
 
 ~~~
 
- [sueswe@X1Carbon-6th:~]└2 $ getNextWorkingday 2025-05-26 3
+$>  getNextWorkingday 2025-05-26 3
 Friday, 2025-05-30
 
- [sueswe@X1Carbon-6th:~]└2 $ getNextWorkingday 2025-05-26 2
+$>  getNextWorkingday 2025-05-26 2
 Wednesday, 2025-05-28
 
- [sueswe@X1Carbon-6th:~]└2 $ getNextWorkingday 2025-05-26 1
+$>  getNextWorkingday 2025-05-26 1
 Tuesday, 2025-05-27
 
- [sueswe@X1Carbon-6th:~]└2 $ getNextWorkingday 2025-05-26 0
+$>  getNextWorkingday 2025-05-26 0
 Monday, 2025-05-26
 
- [sueswe@X1Carbon-6th:~]└2 2 $ getNextWorkingday 2025-06-01 1
+$>  getNextWorkingday 2025-06-01 1
 Monday, 2025-06-02
 
- [sueswe@X1Carbon-6th:~]└2 $ getNextWorkingday 2025-06-01 2
+$>  getNextWorkingday 2025-06-01 2
 Tuesday, 2025-06-03
 
- [sueswe@X1Carbon-6th:~]└2 $ getNextWorkingday 2025-06-01 3
+$>  getNextWorkingday 2025-06-01 3
 Wednesday, 2025-06-04
 
- [sueswe@X1Carbon-6th:~]└2 $ getNextWorkingday 2025-06-01 4
+$>  getNextWorkingday 2025-06-01 4
 Thursday, 2025-06-05
 
- [sueswe@X1Carbon-6th:~]└2 $ getNextWorkingday 2025-06-01 5
+$>  getNextWorkingday 2025-06-01 5
 Friday, 2025-06-06
 
- [sueswe@X1Carbon-6th:~]└2 $ getNextWorkingday 2025-06-01 6
+$>  getNextWorkingday 2025-06-01 6
 Tuesday, 2025-06-10
 
 ~~~
