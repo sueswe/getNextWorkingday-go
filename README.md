@@ -9,12 +9,12 @@ If not, it hopefully returns the next available workingday.
 ## Usage:
 
 ~~~sh
-get_next_wd YYYY-MM-DD offset
+getNextWorkingday YYYY-MM-DD offset
 ~~~
 
 ## Example:
 
 ~~~sh
-get_next_wd 2025-08-10 5
+getNextWorkingday 2025-08-10 5
 ~~~
 
