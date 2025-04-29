@@ -8,10 +8,22 @@ This code takes a date, adds an offset and calculates if the result
 is a workingday **and** not a holiday.
 If not, it hopefully returns the next available workingday.
 
-**TODO:**
 
-Currently it uses a holiday.csv . Future versions should use a 
-holiday-API and a country-parameter, with a config-file.
+## CONFIG
+
+Version >= 0.2 needs a configfile , for the location of the holiday-file:
+
+* Name of the configfile: `$HOME/.getNextWorkingday.toml`
+
+* Example-Content:
+
+~~~sh
+[default]
+HOLIDAY_PATH = "sBATCH_GLOBALTOOLS"
+HOLIDAY_FILE = "feiertage.dat"
+~~~~
+
+**HOLIDAY_PATH has to be an exported variable!**
 
 
 ## Usage:
