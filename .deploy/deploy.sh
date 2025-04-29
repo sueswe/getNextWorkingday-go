@@ -52,14 +52,17 @@ echo '
 ### AIX ###############################################################
 '
 
+remotecommander.rb -g stp,prodta2 -c "mkdir \$HOME/bin/"
 cd /tmp/ || exit 1
 "$HOME"/bin/vicecersa.sh stp,testta2 getNextWorkingday.aix '\$HOME/bin/' || {
     echo "Status: $?"
     exit 2
 }
 
-cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh stp,prodta2 getNextWorkingday.aix '\$HOME/bin/' || {
-    echo "Status: $?"
-    exit 2
-}
+
+# remotecommander.rb -g stp,prodta2 -c "mkdir \$HOME/bin/"
+# cd /tmp/ || exit 1
+# "$HOME"/bin/vicecersa.sh stp,prodta2 getNextWorkingday.aix '\$HOME/bin/' || {
+#     echo "Status: $?"
+#     exit 2
+# }
