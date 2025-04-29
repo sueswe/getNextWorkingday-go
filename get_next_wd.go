@@ -7,6 +7,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/pelletier/go-toml"
 )
 
 func CheckErr(e error) {
@@ -16,9 +18,11 @@ func CheckErr(e error) {
 }
 
 var REV = "DEV"
+var VERSION = "0.2"
+var home string = os.Getenv("HOME")
 
 func usage() {
-	fmt.Println("Version: " + REV)
+	fmt.Println("Version: " + VERSION + " , Commit: " + REV)
 	fmt.Println("\nUsage: \n  ./getNextWorkingday Date(YYYY-MM-DD) Offset(N)")
 	fmt.Println("")
 }
@@ -89,7 +93,14 @@ func main() {
 	dateStr := os.Args[1]
 	plus := os.Args[2]
 	p, _ := strconv.Atoi(plus)
-	dataFileName := "holiday.csv"
+
+	// Get from configfile:
+	config, err := toml.LoadFile(home + "/.getNextWorkingday.toml")
+	//dataFileName := "holiday.csv"
+	dataFile := config.Get("default.HOLIDAY_FILE").(string)
+	dataPath := config.Get("default.HOLIDAY_PATH").(string)
+
+	dataFileName := os.Getenv(dataPath) + "/" + dataFile
 
 	// make a time-thingy and parse it:
 	d, err := time.Parse(time.DateOnly, dateStr)
