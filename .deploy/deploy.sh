@@ -16,32 +16,32 @@ echo "------------------------------------"
 echo '
 ### LINUX ###############################################################
 '
+
+remotecommander.rb -g stp,testta3 -c "mkdir \$HOME/bin/"
 cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh stp,testta3 getNextWorkingday \$HOME/bin || {
+"$HOME"/bin/vicecersa.sh stp,testta3 getNextWorkingday \$HOME/bin/ || {
     echo "Status: $?"
     exit 2
 }
 
+remotecommander.rb -g lgkk,testta3 -c "mkdir \$HOME/bin/"
 cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh lgkk,testta3 getNextWorkingday \$HOME/bin || {
+"$HOME"/bin/vicecersa.sh lgkk,testta3 getNextWorkingday \$HOME/bin/ || {
     echo "Status: $?"
     exit 2
 }
 
+
+remotecommander.rb -g lgkk,prodta3 -c "mkdir \$HOME/bin/"
 cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh stp,testta3 getNextWorkingday \$HOME/bin || {
+"$HOME"/bin/vicecersa.sh lgkk,prodta3 getNextWorkingday \$HOME/bin/ || {
     echo "Status: $?"
     exit 2
 }
 
+remotecommander.rb -g stp,prodta3 -c "mkdir \$HOME/bin/"
 cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh lgkk,prodta3 getNextWorkingday \$HOME/bin || {
-    echo "Status: $?"
-    exit 2
-}
-
-cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh stp,prodta3 getNextWorkingday \$HOME/bin || {
+"$HOME"/bin/vicecersa.sh stp,prodta3 getNextWorkingday \$HOME/bin/ || {
     echo "Status: $?"
     exit 2
 }
@@ -53,13 +53,13 @@ echo '
 '
 
 cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh stp,testta2 getNextWorkingday.aix \$sBATCH_STP_HOME/getNextWorkingday || {
+"$HOME"/bin/vicecersa.sh stp,testta2 getNextWorkingday.aix '\$HOME/bin/' || {
     echo "Status: $?"
     exit 2
 }
 
 cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh stp,prodta2 getNextWorkingday.aix \$sBATCH_STP_HOME/getNextWorkingday || {
+"$HOME"/bin/vicecersa.sh stp,prodta2 getNextWorkingday.aix '\$HOME/bin/' || {
     echo "Status: $?"
     exit 2
 }
