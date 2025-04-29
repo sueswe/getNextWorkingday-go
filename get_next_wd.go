@@ -66,7 +66,7 @@ func nextWorkingDay(csv string, datum string) {
 
 	if (is_wd == 0) && (is_h == 1) {
 		// log.Println("Workday and not holiday: " + datum)
-		fmt.Println(dow + ", " + datum)
+		fmt.Println(dow + "," + datum)
 		// FIXME: /get_next_wd.go:80:1: missing return
 		// return datum
 	} else {
