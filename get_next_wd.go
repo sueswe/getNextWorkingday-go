@@ -83,20 +83,6 @@ func nextWorkingDay(csv string, datum string) {
 	//return datum
 }
 
-// check for a ConfigFile
-func readConfig(filename string) int {
-	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
-	_, err := os.ReadFile(filename)
-	if err != nil {
-		infoLog.Println("(no config " + filename + " found)")
-		return 1
-	} else {
-		infoLog.Println("Reading config: " + filename)
-		return 0
-	}
-
-}
-
 func main() {
 	if len(os.Args) <= 1 {
 		usage()
@@ -108,12 +94,11 @@ func main() {
 	plus := os.Args[2]
 	p, _ := strconv.Atoi(plus)
 
-	if readConfig(home+"/.getNextWorkingday.toml") == 1 {
-		log.Fatalln("ERROR: Cannot find the configfile. Please read the README.")
-	}
 	// Get from configfile:
 	config, err := toml.LoadFile(home + "/.getNextWorkingday.toml")
-	CheckErr(err)
+	if err != nil {
+		log.Fatalln("ERROR: Cannot find the configfile. Please read the README.")
+	}
 	//dataFileName := "holiday.csv"
 	dataFile := config.Get("default.HOLIDAY_FILE").(string)
 	dataPath := config.Get("default.HOLIDAY_PATH").(string)
