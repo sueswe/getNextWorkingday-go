@@ -32,15 +32,17 @@ HOLIDAY_FILE = "feiertage.dat"
 getNextWorkingday YYYY-MM-DD offset
 ~~~
 
-## Example:
+## Examples, with austrian holiday-calendar
 
 ~~~sh
 getNextWorkingday 2025-08-10 5
+Monday,2025-08-18
 ~~~
 
-**Results** , with austrian holiday-calendar:
 
 ~~~
+$>  getNextWorkingday 2025-10-01 10
+Monday,2025-10-13
 
 $>  getNextWorkingday 2025-05-26 3
 Friday, 2025-05-30
@@ -54,24 +56,14 @@ Tuesday, 2025-05-27
 $>  getNextWorkingday 2025-05-26 0
 Monday, 2025-05-26
 
-$>  getNextWorkingday 2025-06-01 1
-Monday, 2025-06-02
-
-$>  getNextWorkingday 2025-06-01 2
-Tuesday, 2025-06-03
-
-$>  getNextWorkingday 2025-06-01 3
-Wednesday, 2025-06-04
-
-$>  getNextWorkingday 2025-06-01 4
-Thursday, 2025-06-05
-
-$>  getNextWorkingday 2025-06-01 5
-Friday, 2025-06-06
-
 $>  getNextWorkingday 2025-06-01 6
 Tuesday, 2025-06-10
 
+$>  getNextWorkingday 2025-12-24 1
+Monday,2025-12-29
+
+$>  getNextWorkingday 2025-12-31 1
+Friday,2026-01-02
 ~~~
 
 
