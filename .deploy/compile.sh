@@ -30,10 +30,3 @@ GOOS=aix GOARCH=ppc64 go build -ldflags "-X main.REV=$APPRELEASEVERSION" -v -o /
     echo "Status: $?"
     exit 4
 }
-
-echo ""
-echo "compiling: GOOS=windows GOARCH=amd64 go build get_next_wd.go -ldflags -X main.REV=$APPRELEASEVERSION"
-GOOS=windows GOARCH=amd64 go build -ldflags "-X main.REV=$APPRELEASEVERSION" -v -o /tmp/getNextWorkingday.win64 || {
-    echo "Status: $?"
-    exit 4
-}

@@ -17,46 +17,35 @@ echo '
 ### LINUX ###############################################################
 '
 
-# remotecommander.rb -g stp,testta3 -c "mkdir \$HOME/bin"
-cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh stp,testta3 getNextWorkingday \$HOME/bin/ || {
-    echo "Status: $?"
-    exit 2
-}
+stages='
+stp,testta3
+stp,prodta3
+lgkk,testta3
+lgkk,prodta3
+'
 
-# remotecommander.rb -g lgkk,testta3 -c "mkdir \$HOME/bin"
-cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh lgkk,testta3 getNextWorkingday \$HOME/bin/ || {
-    echo "Status: $?"
-    exit 2
-}
-
-
-# remotecommander.rb -g lgkk,prodta3 -c "mkdir \$HOME/bin"
-cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh lgkk,prodta3 getNextWorkingday \$HOME/bin/ || {
-    echo "Status: $?"
-    exit 2
-}
-
-# remotecommander.rb -g stp,prodta3 -c "mkdir \$HOME/bin"
-cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh stp,prodta3 getNextWorkingday \$HOME/bin/ || {
-    echo "Status: $?"
-    exit 2
-}
-
+for umg in $stages; do
+    cd /tmp/ || exit 1
+    "$HOME"/bin/vicecersa.sh ${umg} getNextWorkingday \$HOME/bin/ || {
+        echo "Status: $?"
+        exit 2
+    }
+done
 
 
 echo '
 ### AIX ###############################################################
 '
 
-# remotecommander.rb -g stp,testta2 -c "mkdir \$HOME/bin"
-cd /tmp/ || exit 1
-"$HOME"/bin/vicecersa.sh stp,testta2 getNextWorkingday.aix \$HOME/bin/ || {
-    echo "Status: $?"
-    exit 2
-}
-remotecommander.rb -g stp,testta2 -c "mv \$HOME/bin/getNextWorkingday.aix \$HOME/bin/getNextWorkingday"
+stages='
+stp,testta2
+stp,prodta2
+'
 
+for umg in ${stages}; do
+    cd /tmp/ || exit 1
+    "$HOME"/bin/vicecersa.sh ${umg} getNextWorkingday.aix \$HOME/bin/ getNextWorkingday || {
+        echo "Status: $?"
+        exit 2
+    }
+done
