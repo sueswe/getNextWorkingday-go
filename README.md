@@ -1,6 +1,6 @@
 # getNextWorkingday
 
-README: looking for the next workingday after adding a given (positiv) offset (days)
+README: lookup the next workingday after adding a given (positiv) offset (days), based on an holiday-calender-file 
 
 ## Topic:
 
@@ -20,7 +20,7 @@ Version >= 0.2 needs a configfile , for the location of the holiday-file:
 ~~~sh
 [default]
 HOLIDAY_PATH = "sBATCH_GLOBALTOOLS"
-HOLIDAY_FILE = "feiertage.dat"
+HOLIDAY_FILE = "AT-holiday.dat"
 ~~~~
 
 **HOLIDAY_PATH has to be an exported variable!**
