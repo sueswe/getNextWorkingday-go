@@ -2,7 +2,7 @@
 
 source ~/.profile
 
-cd "$HOME"/compile/runcmd-go || {
+cd "$HOME"/compile/getNextWorkingday-go || {
     echo "Status: $?"
     exit 4
 }
@@ -18,6 +18,7 @@ echo '
 '
 
 stages='
+stplgk,testta3
 stp,testta3
 stp,prodta3
 lgkk,testta3
@@ -30,6 +31,7 @@ for umg in $stages; do
         echo "Status: $?"
         exit 2
     }
+    echo ""
 done
 
 
@@ -48,4 +50,5 @@ for umg in ${stages}; do
         echo "Status: $?"
         exit 2
     }
+    echo ""
 done
