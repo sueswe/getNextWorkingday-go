@@ -1,6 +1,8 @@
 # getNextWorkingday
 
-README: lookup the next workingday after adding a given (positiv) offset (days), based on an holiday-calender-file 
+![build workflow](https://github.com/sueswe/getNextWorkingday-go/actions/workflows/go.yml/badge.svg?event=push)
+
+About: lookup the next workingday after adding a given (positiv) offset (days), based on an holiday-calender-file 
 
 ## Topic:
 
@@ -66,8 +68,4 @@ $>  getNextWorkingday 2025-12-31 1
 Friday,2026-01-02
 ~~~
 
-
-## Install
-
-Therefor you may use *Make.sh* . It runs go build, mv it to `$HOME/go/bin` and sets the PATH to HOME/go/bin/ .
 
