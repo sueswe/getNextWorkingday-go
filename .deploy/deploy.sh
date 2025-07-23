@@ -17,14 +17,7 @@ echo '
 ### LINUX ###############################################################
 '
 
-stages='
-stplgk,testta3
-stp,testta3
-stp,prodta3
-lgkk,testta3
-lgkk,prodta3
-'
-
+stages='stplgk,testta3 stp,testta3 stp,prodta3 lgkk,testta3 lgkk,prodta3 hema,test,01T hema,prod'
 for umg in $stages; do
     cd /tmp/ || exit 1
     "$HOME"/bin/vicecersa.sh ${umg} getNextWorkingday \$HOME/bin/ || {
@@ -39,11 +32,7 @@ echo '
 ### AIX ###############################################################
 '
 
-stages='
-stp,testta2
-stp,prodta2
-'
-
+stages="stp,testta2 stp,prodta2 pfif"
 for umg in ${stages}; do
     cd /tmp/ || exit 1
     "$HOME"/bin/vicecersa.sh ${umg} getNextWorkingday.aix \$HOME/bin/ getNextWorkingday || {
