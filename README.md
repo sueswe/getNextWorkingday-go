@@ -28,6 +28,9 @@ HOLIDAY_FILE = "AT-holiday.dat"
 **HOLIDAY_PATH has to be an exported variable!**
 
 
+Use `getNextWorkingday -c` to view the configfile you installed.
+
+
 ## Usage:
 
 ~~~sh

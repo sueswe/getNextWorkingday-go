@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -18,13 +20,14 @@ func CheckErr(e error) {
 }
 
 var REV = "DEV"
-var VERSION = "0.3"
+var VERSION = "0.4"
 var home string = os.Getenv("HOME")
 
 func usage() {
 	fmt.Println("Version: " + VERSION + " , Commit: " + REV)
 	fmt.Println("\nUsage: \n  ./getNextWorkingday Date(YYYY-MM-DD) Offset(N)")
 	fmt.Println("")
+	fmt.Printf("use -h for additional options.\n\n")
 }
 
 // returns DayOfWeek and zero(is a wd) or one(is not a wd)
@@ -83,11 +86,40 @@ func nextWorkingDay(csv string, datum string) {
 	//return datum
 }
 
+func readConfig(cf string) int {
+	file, err := os.Open(cf)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	fmt.Println("$> " + cf + ": ")
+	fmt.Println("")
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+	return 0
+}
+
 func main() {
 	if len(os.Args) <= 1 {
 		usage()
 		log.Fatalln("Missing arguments.")
 		os.Exit(1)
+	}
+
+	configPart := flag.Bool("c", false, "view configfile.")
+	flag.Parse()
+
+	if *configPart {
+		readConfig(home + "/.getNextWorkingday.toml")
+		os.Exit(0)
 	}
 
 	dateStr := os.Args[1]
