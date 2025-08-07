@@ -20,7 +20,7 @@ echo '
 stages='stplgk,testta3 stp,testta3 stp,prodta3 lgkk,testta3 lgkk,prodta3 hema,test,01T hema,prod'
 for umg in $stages; do
     cd /tmp/ || exit 1
-    "$HOME"/bin/vicecersa.sh ${umg} getNextWorkingday '~/bin/' || {
+    "$HOME"/bin/vicecersa.sh ${umg} getNextWorkingday "~/bin/" || {
         echo "Status: $?"
         exit 2
     }
@@ -35,7 +35,7 @@ echo '
 stages="stp,testta2 stp,prodta2 pfif"
 for umg in ${stages}; do
     cd /tmp/ || exit 1
-    "$HOME"/bin/vicecersa.sh ${umg} getNextWorkingday.aix '~/bin/' getNextWorkingday || {
+    "$HOME"/bin/vicecersa.sh ${umg} getNextWorkingday.aix "~/bin/" getNextWorkingday || {
         echo "Status: $?"
         exit 2
     }
