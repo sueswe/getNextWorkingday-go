@@ -42,7 +42,7 @@ pipeline {
                     try {
                         sh ' cd ~/compile/getNextWorkingday-go && .deploy/deploy.sh '
                     } catch(err) {
-                        throw err
+                        unstable "${err}"
                     }
                 }
             }
