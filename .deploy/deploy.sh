@@ -2,7 +2,9 @@
 
 source ~/.profile
 
-cd "$HOME"/compile/getNextWorkingday-go || {
+name='getNextWorkingday'
+
+cd "$HOME"/compile/${name}-go || {
     echo "Status: $?"
     exit 4
 }
@@ -12,32 +14,32 @@ env | grep PATH
 env | grep LOADED
 echo "------------------------------------"
 
+masterrtc=0
 
-echo '
-### LINUX ###############################################################
-'
-
-stages='stplgk,testta3 stp,testta3 stp,prodta3 lgkk,testta3 lgkk,prodta3 hema,test,01T hema,prod'
-for umg in $stages; do
+echo '### LINUX #########################################################'
+stages="stp,testta3 lgkk,testta3 stp,prodta3 lgkk,prodta3 hema,test,01T hema,prod"
+for UMG in ${stages}
+do
     cd /tmp/ || exit 1
-    "$HOME"/bin/vicecersa.sh ${umg} getNextWorkingday "~/bin/" || {
+    remotecommander.rb -d "\$HOME/bin/" -s "${name}" -g ${UMG} || {
         echo "Status: $?"
-        exit 2
+        masterrtc=2
     }
-    echo ""
 done
+rm -v /tmp/${name}
 
 
-echo '
-### AIX ###############################################################
-'
-
+echo '### AIX #########################################################'
 stages="stp,testta2 stp,prodta2 pfif"
-for umg in ${stages}; do
-    cd /tmp/ || exit 1
-    "$HOME"/bin/vicecersa.sh ${umg} getNextWorkingday.aix "~/bin/" getNextWorkingday || {
+cd /tmp/ || exit 1
+cp ${name}.aix ${name}
+for UMG in ${stages}
+do
+    remotecommander.rb -d "\$HOME/bin/" -s "${name}" -g ${UMG}  || {
         echo "Status: $?"
-        exit 2
+        masterrtc=2
     }
-    echo ""
 done
+
+rm -v /tmp/${name}*
+exit ${masterrtc}
