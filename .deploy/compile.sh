@@ -13,7 +13,7 @@ env | grep LOADED
 pwd
 echo "------------------------------------"
 
-APPRELEASEVERSION=$(git rev-list -1 HEAD get_next_wd.go)
+APPRELEASEVERSION=$(git rev-list -1 HEAD get_next_wd.go | cut -b 1-8)
 export APPRELEASEVERSION
 echo "REV: $APPRELEASEVERSION"
 
